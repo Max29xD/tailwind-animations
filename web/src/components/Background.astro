@@ -9,7 +9,7 @@
 <script>
   const $container = document.getElementById('container') as HTMLDivElement
 
-  Array.from({ length: 15 }).forEach((_, i) => {
+  Array.from({ length: 15 }).forEach(() => {
     const $particle = document.createElement('div') as HTMLDivElement
     $particle.className = 'particle'
 
