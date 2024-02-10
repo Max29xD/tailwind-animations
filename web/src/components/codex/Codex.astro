@@ -47,9 +47,7 @@ const { code, theme, style, label, lang, CopyToClipboard } = Astro.props
 <script>
   import { copyToClipboard } from '@utils/utils'
 
-  const $snippets = document.querySelectorAll(
-    '#snippet'
-  ) as NodeListOf<HTMLButtonElement>
+  const $snippets = document.querySelectorAll('#snippet')
 
   $snippets.forEach(($snippet) => {
     const $copy = $snippet.querySelector('.copy') as HTMLButtonElement

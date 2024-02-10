@@ -10,7 +10,7 @@ const { animationKey } = Astro.props
 
 <article
   id='card-children'
-  class='card relative flex aspect-square cursor-pointer flex-col overflow-hidden rounded-2xl bg-andromeeda-400 animate-duration-1000 before:absolute before:left-0 before:top-0 before:z-[3] before:h-full before:w-full before:rounded-[inherit] before:opacity-0 before:blur-xl before:transition-opacity before:duration-300 before:content-[""] before:[background:radial-gradient(400px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.2),transparent_40%)] after:absolute after:left-0 after:top-0 after:z-[1] after:h-full after:w-full after:rounded-[inherit] after:opacity-0 after:transition-opacity after:duration-300 after:content-[""] after:[background:radial-gradient(300px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.6),transparent_40%)] before:hover:opacity-100 group-hover/card:after:opacity-100'
+  class='relative flex aspect-square cursor-pointer flex-col overflow-hidden rounded-2xl bg-andromeeda-400 animate-duration-1000 before:absolute before:left-0 before:top-0 before:z-[3] before:h-full before:w-full before:rounded-[inherit] before:opacity-0 before:blur-xl before:transition-opacity before:duration-300 before:content-[""] before:[background:radial-gradient(400px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.2),transparent_40%)] after:absolute after:left-0 after:top-0 after:z-[1] after:h-full after:w-full after:rounded-[inherit] after:opacity-0 after:transition-opacity after:duration-300 after:content-[""] after:[background:radial-gradient(300px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(255,255,255,0.6),transparent_40%)] before:hover:opacity-100 group-hover/card:after:opacity-100'
   data-class={animationKey}
 >
   <div
@@ -56,18 +56,17 @@ const { animationKey } = Astro.props
   const $cardsContainer = document.getElementById(
     'cards-container'
   ) as HTMLDivElement
-  const $cardsChildren = document.querySelectorAll(
-    '#card-children'
-  ) as NodeListOf<HTMLDivElement>
+  const $cardsChildren = document.querySelectorAll('#card-children')
 
   $cardsContainer.onmousemove = (e) => {
     $cardsChildren.forEach(($card) => {
-      const rect = $card.getBoundingClientRect(),
-        x = e.clientX - rect.left,
-        y = e.clientY - rect.top
+      const $el = $card as HTMLDivElement
+      const rect = $el.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
 
-      $card.style.setProperty('--mouse-x', `${x}px`)
-      $card.style.setProperty('--mouse-y', `${y}px`)
+      $el.style.setProperty('--mouse-x', `${x}px`)
+      $el.style.setProperty('--mouse-y', `${y}px`)
     })
   }
 </script>

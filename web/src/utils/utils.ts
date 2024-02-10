@@ -1,4 +1,4 @@
-import { toast } from "wc-toast"
+import { toast } from 'wc-toast'
 
 export type themeProps = 'light' | 'dark' | 'custom' | undefined
 
