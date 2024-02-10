@@ -10,8 +10,8 @@
       "@layouts/*": [
         "src/layouts/*"
       ],
-      "@images/*": [
-        "src/assets/images/*"
+      "@assets/*": [
+        "src/assets/*"
       ],
       "@utils/*": [
         "src/utils/*"
