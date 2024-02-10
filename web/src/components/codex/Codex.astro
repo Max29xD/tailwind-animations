@@ -1,6 +1,5 @@
 ---
 import { Code } from 'astro:components'
-import CopyIcon from '@components/icons/Copy.astro'
 import { twMerge } from 'tailwind-merge'
 import type { ThemeType, LanguageType } from './codex.type'
 
@@ -18,9 +17,8 @@ const { code, theme, style, label, lang, CopyToClipboard } = Astro.props
 
 <span class='mb-1 select-none text-xs font-semibold opacity-50'>{label}</span>
 <div
-  id='snippet'
   class={twMerge(
-    'flex text-sm w-full items-center justify-between gap-x-2 rounded-2xl bg-andromeeda-500 py-1 pl-4 pr-1 text-white',
+    'snippet flex text-sm w-full items-center justify-between gap-x-2 rounded-2xl bg-andromeeda-500 py-1 pl-4 pr-1 text-white',
     style
   )}
 >
@@ -29,9 +27,28 @@ const { code, theme, style, label, lang, CopyToClipboard } = Astro.props
     CopyToClipboard ? (
       <button
         title='Copy to clipboard'
-        class='copy mt-auto grid size-7 place-items-center rounded-full bg-white/10 text-sm'
+        class='copy mt-auto grid size-7 place-items-center rounded-full bg-white/10 text-md'
       >
-        <CopyIcon />
+        <svg
+          width='1em'
+          height='1em'
+          stroke-width='1.5'
+          viewBox='0 0 24 24'
+          fill='none'
+        >
+          <path
+            d='M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z'
+            stroke='currentColor'
+            stroke-linecap='round'
+            stroke-linejoin='round'
+          ></path>
+          <path
+            d='M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9'
+            stroke='currentColor'
+            stroke-linecap='round'
+            stroke-linejoin='round'
+          ></path>
+        </svg>
       </button>
     ) : null
   }
@@ -47,7 +64,9 @@ const { code, theme, style, label, lang, CopyToClipboard } = Astro.props
 <script>
   import { copyToClipboard } from '@utils/utils'
 
-  const $snippets = document.querySelectorAll('#snippet')
+  const $snippets = document.querySelectorAll(
+    '.snippet'
+  ) as NodeListOf<HTMLButtonElement>
 
   $snippets.forEach(($snippet) => {
     const $copy = $snippet.querySelector('.copy') as HTMLButtonElement

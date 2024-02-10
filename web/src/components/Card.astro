@@ -1,6 +1,4 @@
 ---
-import CopyIcon from '@components/icons/Copy.astro'
-
 interface Props {
   animationKey: string
 }
@@ -24,8 +22,29 @@ const { animationKey } = Astro.props
       ></span>
       <p class='text-sm font-semibold opacity-80'>{animationKey}</p>
     </div>
-    <button class='absolute right-3 top-3'>
-      <CopyIcon />
+    <button class='absolute right-3 top-3 text-md'>
+      <svg
+        width='1em'
+        height='1em'
+        stroke-width='1.5'
+        viewBox='0 0 24 24'
+        fill='none'
+      >
+        <path
+          d='M19.4 20H9.6C9.26863 20 9 19.7314 9 19.4V9.6C9 9.26863 9.26863 9 9.6 9H19.4C19.7314 9 20 9.26863 20 9.6V19.4C20 19.7314 19.7314 20 19.4 20Z'
+          stroke='currentColor'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+        >
+        </path>
+        <path
+          d='M15 9V4.6C15 4.26863 14.7314 4 14.4 4H4.6C4.26863 4 4 4.26863 4 4.6V14.4C4 14.7314 4.26863 15 4.6 15H9'
+          stroke='currentColor'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+        >
+        </path>
+      </svg>
     </button>
   </div>
 </article>
@@ -56,17 +75,18 @@ const { animationKey } = Astro.props
   const $cardsContainer = document.getElementById(
     'cards-container'
   ) as HTMLDivElement
-  const $cardsChildren = document.querySelectorAll('#card-children')
+  const $cardsChildren = document.querySelectorAll(
+    '#card-children'
+  ) as NodeListOf<HTMLDivElement>
 
   $cardsContainer.onmousemove = (e) => {
     $cardsChildren.forEach(($card) => {
-      const $el = $card as HTMLDivElement
-      const rect = $el.getBoundingClientRect()
+      const rect = $card.getBoundingClientRect()
       const x = e.clientX - rect.left
       const y = e.clientY - rect.top
 
-      $el.style.setProperty('--mouse-x', `${x}px`)
-      $el.style.setProperty('--mouse-y', `${y}px`)
+      $card.style.setProperty('--mouse-x', `${x}px`)
+      $card.style.setProperty('--mouse-y', `${y}px`)
     })
   }
 </script>
